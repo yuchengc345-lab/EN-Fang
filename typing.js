@@ -3,13 +3,13 @@ let currentWordIndex = 0;
 let wordDictionary = []; 
 
 const container = document.getElementById('inputContainer');
-const hintElement = document.getElementById('chineseHint');
+const englishHint = document.getElementById('englishHint');
+const chineseHint = document.getElementById('chineseHint');
 const msgElement = document.getElementById('successMessage');
 const checkBtn = document.getElementById('checkBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const progressText = document.getElementById('progressText');
-const correctAnswerMsg = document.getElementById('correctAnswerMsg');
 const groupSelect = document.getElementById('groupSelect');
 const speakBtn = document.getElementById('speakBtn'); 
 
@@ -36,7 +36,6 @@ function initSelect() {
     groupSelect.appendChild(option);
   });
   
-  // 載入第一組單字
   if(wordGroups.length > 0) {
       wordDictionary = wordGroups[0].words;
   }
@@ -54,11 +53,11 @@ groupSelect.addEventListener('change', (e) => {
 function loadQuestion(index) {
   container.innerHTML = '';
   msgElement.innerText = '';
-  correctAnswerMsg.innerText = ''; 
   checkBtn.style.display = 'inline-block';
 
   if (!wordDictionary || wordDictionary.length === 0) {
-      hintElement.innerText = "請先加入題庫！";
+      englishHint.innerText = "請先加入題庫！";
+      chineseHint.innerText = "";
       progressText.innerText = `第 0 題 / 共 0 題`;
       return;
   }
@@ -66,13 +65,16 @@ function loadQuestion(index) {
   progressText.innerText = `第 ${index + 1} 題 / 共 ${wordDictionary.length} 題`;
 
   const currentData = wordDictionary[index];
-  hintElement.innerText = currentData.chinese;
+  
+  // ✨ 關鍵差異：看打模式專屬，同時顯示英文與中文！
+  englishHint.innerText = currentData.english;
+  chineseHint.innerText = `(${currentData.chinese})`;
 
   // 建立可愛輸入框
   const input = document.createElement('input');
   input.type = "text";
   input.className = 'word-input';
-  input.placeholder = "輸入英文... ✍️"; 
+  input.placeholder = "照著上方英文打... ✍️"; 
   input.autocomplete = "off"; 
   input.spellcheck = false; 
   
@@ -81,7 +83,6 @@ function loadQuestion(index) {
       if (input.classList.contains('wrong')) {
           input.classList.remove('wrong'); 
           msgElement.innerText = ''; 
-          correctAnswerMsg.innerText = ''; 
       }
   });
 
@@ -125,15 +126,14 @@ checkBtn.addEventListener('click', () => {
 
   if (isCorrect) {
       input.className = 'word-input correct';
-      msgElement.innerText = "🎉 答對啦！太棒了！";
+      msgElement.innerText = "🎉 照打正確！太棒了！";
       msgElement.className = "success-msg correct-text";
       input.disabled = true; 
       checkBtn.style.display = 'none';
   } else {
       input.className = 'word-input wrong';
-      msgElement.innerText = "❌ 哎呀，拼錯囉！直接打字覆蓋重試吧！";
+      msgElement.innerText = "❌ 哎呀，不小心打錯囉！直接打字覆蓋重試吧！";
       msgElement.className = "success-msg wrong-text";
-      correctAnswerMsg.innerHTML = `正確答案是：<br><span style="color:#ff69b4; font-size: 22px;">${rawAnswer}</span>`;
       input.select(); 
   }
 });
