@@ -1,7 +1,4 @@
 const wordGroups = [
-  // ==========================================
-  // 📚 第一部分：第四章 (共 8 組)
-  // ==========================================
   { category: "第四章", groupName: "病歷術語 1 (症狀與徵象)", words: [
       { english: "acute onset headache", chinese: "急性頭痛發作" },
       { english: "right side weakness (hemiparesis)", chinese: "右側肢體無力（輕偏癱）" },
