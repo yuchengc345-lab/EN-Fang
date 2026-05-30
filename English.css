@@ -5,7 +5,6 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  /* 可愛波點背景 */
   background-color: #fff0f5; 
   background-image: radial-gradient(#ffe4e1 3px, transparent 3px);
   background-size: 25px 25px;
@@ -15,19 +14,15 @@ body {
   background: white;
   padding: 30px;
   border-radius: 28px;
-  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.6); /* 粉紅柔和陰影 */
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.6); 
   text-align: center;
   width: 90%;
   max-width: 450px;
   box-sizing: border-box;
-  border: 4px solid #ffb6c1; /* 粉紅粗邊框 */
+  border: 4px solid #ffb6c1; 
 }
 
-h2 {
-  color: #ff69b4; 
-  margin-top: 0;
-  font-size: 28px;
-}
+h2 { color: #ff69b4; margin-top: 0; font-size: 28px; }
 
 .group-selector {
   margin-bottom: 20px;
@@ -37,10 +32,7 @@ h2 {
   border: 2px dashed #ffb6c1;
 }
 
-.group-selector label {
-  font-weight: bold;
-  color: #ff69b4;
-}
+.group-selector label { font-weight: bold; color: #ff69b4; }
 
 .group-selector select {
   padding: 6px 12px;
@@ -50,35 +42,21 @@ h2 {
   outline: none;
   background: white;
   color: #555;
-  cursor: pointer;
+  width: 95%; /* 讓選單在手機上更寬更好點 */
+  margin-top: 8px;
 }
 
-.progress-text {
-  font-size: 15px;
-  color: #b0c4de;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
+.progress-text { font-size: 15px; color: #b0c4de; margin-bottom: 15px; font-weight: bold; }
 
 .question-card {
   margin-bottom: 20px;
-  background: #f0f8ff; /* 冰藍色小卡片 */
+  background: #f0f8ff; 
   padding: 20px;
   border-radius: 20px;
   border: 3px solid #add8e6;
 }
 
-.label {
-  color: #87ceeb;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.hint-text {
-  font-weight: bold;
-  color: #4682b4;
-  font-size: 26px;
-}
+.label { color: #87ceeb; font-weight: bold; font-size: 18px; }
 
 .speak-btn {
   background: none;
@@ -87,23 +65,17 @@ h2 {
   cursor: pointer;
   margin-left: 10px;
   vertical-align: middle;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.2s ease;
 }
+.speak-btn:hover { transform: scale(1.3) rotate(-10deg); }
 
-.speak-btn:hover {
-  transform: scale(1.3) rotate(-10deg); /* 懸停時會微微放大並傾斜 */
-}
-
-.input-container {
-  margin-top: 20px;
-  margin-bottom: 25px;
-}
+.input-container { margin-top: 20px; margin-bottom: 25px; }
 
 .word-input {
   width: 100%;
   height: 60px;
-  font-size: 24px;
-  padding: 5px 15px;
+  font-size: 22px;
+  padding: 5px 10px;
   border: 3px solid #ffb6c1;
   border-radius: 16px;
   text-align: center;
@@ -112,29 +84,17 @@ h2 {
   box-sizing: border-box;
   font-family: monospace;
   color: #333;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .word-input:focus {
   border-color: #ff69b4;
-  box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); /* 點擊輸入時會發光 */
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); 
   transform: scale(1.02);
 }
 
-.word-input.correct {
-  color: #32cd32;
-  border-color: #98fb98;
-  background-color: #f0fff0;
-}
+.word-input.correct { color: #32cd32; border-color: #98fb98; background-color: #f0fff0; }
+.word-input.wrong { color: #ff4500; border-color: #ff7f50; background-color: #ffe4e1; animation: shake 0.4s ease-in-out; }
 
-.word-input.wrong {
-  color: #ff4500;
-  border-color: #ff7f50;
-  background-color: #ffe4e1;
-  animation: shake 0.4s ease-in-out; /* 答錯時的搖晃動畫 */
-}
-
-/* 搖晃動畫設定 */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-6px) rotate(-2deg); }
@@ -145,40 +105,45 @@ h2 {
 .control-panel {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   margin-top: 20px;
 }
 
 .check-btn, .nav-btn {
-  padding: 12px 20px;
+  padding: 12px 18px;
   font-size: 16px;
   color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
-  transition: all 0.1s;
 }
 
-.check-btn {
-  background-color: #ff69b4;
-  box-shadow: 0 5px 0 #db7093; /* 立體按鈕底部 */
-}
-.check-btn:active {
-  transform: translateY(5px); /* 點擊時按下去的感覺 */
-  box-shadow: 0 0 0 #db7093;
-}
+.check-btn { background-color: #ff69b4; box-shadow: 0 5px 0 #db7093; }
+.check-btn:active { transform: translateY(5px); box-shadow: 0 0 0 #db7093; }
 
-.nav-btn {
-  background-color: #87ceeb;
-  box-shadow: 0 5px 0 #4682b4;
-}
-.nav-btn:active {
-  transform: translateY(5px);
-  box-shadow: 0 0 0 #4682b4;
-}
+.nav-btn { background-color: #87ceeb; box-shadow: 0 5px 0 #4682b4; }
+.nav-btn:active { transform: translateY(5px); box-shadow: 0 0 0 #4682b4; }
 
 .success-msg { font-size: 18px; font-weight: bold; margin-top: 20px; min-height: 24px; }
-.answer-msg { font-size: 18px; font-weight: bold; margin-top: 10px; color: #555; }
 .correct-text { color: #32cd32; }
 .wrong-text { color: #ff4500; }
+
+/* 📱 手機螢幕專屬優化 (螢幕寬度小於 480px 時觸發) */
+@media (max-width: 480px) {
+  .app-wrapper {
+    width: 95%;
+    padding: 20px 15px; /* 縮小內邊距，留給內容更多空間 */
+    border-radius: 20px;
+  }
+  h2 { font-size: 24px; }
+  .control-panel {
+    gap: 8px; /* 按鈕間距縮小 */
+  }
+  .check-btn, .nav-btn {
+    padding: 12px 10px; /* 按鈕左右稍微縮小 */
+    font-size: 14px; /* 字體微調，避免擠出去 */
+    flex: 1; /* 讓三個按鈕平均分配寬度 */
+  }
+  .word-input { height: 50px; font-size: 20px; }
+}
