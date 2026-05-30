@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ 醫護英文看打小寶典 ✨</title>
+  <link rel="stylesheet" href="en.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <h2>⌨️ 醫護英文看打 ✨</h2>
+
+    <div class="group-selector">
+      <label for="groupSelect">📁 選擇題庫：</label>
+      <select id="groupSelect"></select>
+    </div>
+
+    <div id="progressText" class="progress-text">準備中...</div>
+
+    <div class="question-card">
+      <span class="label">請照打：</span>
+      <button id="speakBtn" class="speak-btn" title="聽聽發音">🔊</button>
+      <br>
+      <div id="englishHint" class="hint-text" style="color: #ff69b4; font-family: monospace; font-size: 32px; margin-top: 15px;">載入中...</div>
+      <div id="chineseHint" style="font-size: 16px; color: #888; margin-top: 8px;"></div>
+    </div>
+
+    <div id="inputContainer" class="input-container"></div>
+
+    <div class="control-panel">
+      <button id="prevBtn" class="nav-btn">⬅️ 上一題</button>
+      <button id="checkBtn" class="check-btn">確定送出 🐾</button>
+      <button id="nextBtn" class="nav-btn">下一題 ➡️</button>
+    </div>
+
+    <p id="successMessage" class="success-msg"></p>
+  </div>
+
+  <script src="words.js"></script>
+  <script src="typing.js"></script>
+</body>
+</html>
