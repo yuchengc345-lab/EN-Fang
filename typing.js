@@ -13,7 +13,6 @@ const progressText = document.getElementById('progressText');
 const groupSelect = document.getElementById('groupSelect');
 const speakBtn = document.getElementById('speakBtn'); 
 
-// 語音發音功能
 function speakWord(text) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel(); 
@@ -24,7 +23,6 @@ function speakWord(text) {
   }
 }
 
-// 初始化題庫選單
 function initSelect() {
   groupSelect.innerHTML = '';
   wordGroups.forEach((group, index) => {
@@ -41,7 +39,6 @@ function initSelect() {
   }
 }
 
-// 選單切換事件
 groupSelect.addEventListener('change', (e) => {
   currentGroupIndex = parseInt(e.target.value);
   wordDictionary = wordGroups[currentGroupIndex].words;
@@ -49,7 +46,6 @@ groupSelect.addEventListener('change', (e) => {
   loadQuestion(currentWordIndex);
 });
 
-// 載入題目
 function loadQuestion(index) {
   container.innerHTML = '';
   msgElement.innerText = '';
@@ -66,11 +62,9 @@ function loadQuestion(index) {
 
   const currentData = wordDictionary[index];
   
-  // ✨ 關鍵差異：看打模式專屬，同時顯示英文與中文！
   englishHint.innerText = currentData.english;
   chineseHint.innerText = `(${currentData.chinese})`;
 
-  // 建立可愛輸入框
   const input = document.createElement('input');
   input.type = "text";
   input.className = 'word-input';
@@ -78,7 +72,6 @@ function loadQuestion(index) {
   input.autocomplete = "off"; 
   input.spellcheck = false; 
   
-  // 無縫重試：輸入時自動清除錯誤
   input.addEventListener('input', () => {
       if (input.classList.contains('wrong')) {
           input.classList.remove('wrong'); 
@@ -96,7 +89,6 @@ function loadQuestion(index) {
   setTimeout(() => input.focus(), 10);
 }
 
-// 點擊喇叭發音
 speakBtn.addEventListener('click', () => {
   if (wordDictionary && wordDictionary.length > 0) {
       const currentData = wordDictionary[currentWordIndex];
@@ -106,7 +98,6 @@ speakBtn.addEventListener('click', () => {
   }
 });
 
-// 超智慧寬容比對引擎
 checkBtn.addEventListener('click', () => {
   if (!wordDictionary || wordDictionary.length === 0) return;
 
@@ -158,6 +149,5 @@ document.addEventListener('keydown', (e) => {
   else if (e.key === 'ArrowRight') nextBtn.click();
 });
 
-// 初始化啟動
 initSelect();
 loadQuestion(currentWordIndex);
