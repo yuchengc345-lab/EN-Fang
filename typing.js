@@ -30,7 +30,8 @@ function initSelect() {
     option.value = index;
     const startNum = index * 10 + 1;
     const endNum = index * 10 + group.words.length;
-    option.innerText = `🎀 ${group.groupName} (${startNum}-${endNum})`;
+    // ✨ 標註更新 1：下拉選單加上「章節名稱」
+    option.innerText = `🎀 ${group.category} - ${group.groupName} (${startNum}-${endNum})`;
     groupSelect.appendChild(option);
   });
   
@@ -58,7 +59,10 @@ function loadQuestion(index) {
       return;
   }
 
-  progressText.innerText = `第 ${index + 1} 題 / 共 ${wordDictionary.length} 題`;
+  // ✨ 標註更新 2：打字區上方顯示「章節名稱」與「小組名稱」
+  const currentCategory = wordGroups[currentGroupIndex].category;
+  const currentGroupName = wordGroups[currentGroupIndex].groupName;
+  progressText.innerText = `📖 ${currentCategory}：${currentGroupName} (第 ${index + 1} 題 / 共 ${wordDictionary.length} 題)`;
 
   const currentData = wordDictionary[index];
   
