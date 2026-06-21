@@ -13,12 +13,13 @@ const progressText = document.getElementById('progressText');
 const groupSelect = document.getElementById('groupSelect');
 const speakBtn = document.getElementById('speakBtn'); 
 
+// 語音發音核心引擎
 function speakWord(text) {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel(); 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US'; 
-    utterance.rate = 0.85;    
+    utterance.rate = 0.85; // 語速稍微放慢，比較好聽清楚   
     window.speechSynthesis.speak(utterance);
   }
 }
@@ -30,7 +31,6 @@ function initSelect() {
     option.value = index;
     const startNum = index * 10 + 1;
     const endNum = index * 10 + group.words.length;
-    // ✨ 標註更新 1：下拉選單加上「章節名稱」
     option.innerText = `🎀 ${group.category} - ${group.groupName} (${startNum}-${endNum})`;
     groupSelect.appendChild(option);
   });
@@ -59,7 +59,6 @@ function loadQuestion(index) {
       return;
   }
 
-  // ✨ 標註更新 2：打字區上方顯示「章節名稱」與「小組名稱」
   const currentCategory = wordGroups[currentGroupIndex].category;
   const currentGroupName = wordGroups[currentGroupIndex].groupName;
   progressText.innerText = `📖 ${currentCategory}：${currentGroupName} (第 ${index + 1} 題 / 共 ${wordDictionary.length} 題)`;
@@ -68,6 +67,9 @@ function loadQuestion(index) {
   
   englishHint.innerText = currentData.english;
   chineseHint.innerText = `(${currentData.chinese})`;
+
+  // ✨ 關鍵升級：載入單字的同時，自動把它唸出來！
+  speakWord(currentData.english);
 
   const input = document.createElement('input');
   input.type = "text";
@@ -93,6 +95,7 @@ function loadQuestion(index) {
   setTimeout(() => input.focus(), 10);
 }
 
+// 點擊喇叭也能手動重聽
 speakBtn.addEventListener('click', () => {
   if (wordDictionary && wordDictionary.length > 0) {
       const currentData = wordDictionary[currentWordIndex];
